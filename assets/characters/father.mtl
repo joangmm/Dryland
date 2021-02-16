@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # MagicaVoxel @ Ephtracy
 
 newmtl palette
@@ -7,13 +6,3 @@ Ka 0.000 0.000 0.000
 Kd 1.000 1.000 1.000
 Ks 0.000 0.000 0.000
 map_Kd father.png
-=======
-# MagicaVoxel @ Ephtracy
-
-newmtl palette
-illum 1
-Ka 0.000 0.000 0.000
-Kd 1.000 1.000 1.000
-Ks 0.000 0.000 0.000
-map_Kd father.png
->>>>>>> 69a4b7226e52ca8081cb1ed250b6459792e5ef9a
