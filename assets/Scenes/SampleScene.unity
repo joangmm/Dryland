@@ -292,24 +292,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &417193358
-MonoBehaviour:
+--- !u!65 &417193358
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 417193355}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6df3b675d0e03b246ad261411d5f2301, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 6
-  jumpSpeed: 8
-  character: {fileID: 417193355}
-  animator: {fileID: 417193357}
-  degreesPerSecond: 500
-  jumpHeight: 3
+  serializedVersion: 2
+  m_Size: {x: 0.01, y: 0.01, z: 0.01}
+  m_Center: {x: 0, y: 0.006, z: 0}
 --- !u!54 &417193359
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -326,24 +321,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!143 &417193360
-CharacterController:
+--- !u!114 &417193361
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 417193355}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 0.01
-  m_Radius: 0.01
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.01, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c29657b5129f6e4b96625a5f2eb0b4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &489428630
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1923,7 +1912,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 549a5ced8555f4643befce99dd9e79d2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.91
+      value: 32.51
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 549a5ced8555f4643befce99dd9e79d2,
         type: 3}
@@ -1933,7 +1922,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 549a5ced8555f4643befce99dd9e79d2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19.26
+      value: 19.54
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 549a5ced8555f4643befce99dd9e79d2,
         type: 3}
