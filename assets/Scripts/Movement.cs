@@ -100,6 +100,7 @@ public class Movement : MonoBehaviour
         {
             if(hit.collider.tag == "Limit")
             {
+                animator.SetTrigger("isIdle");
                 return false;
             }
             
