@@ -26,9 +26,13 @@ public class functions : MonoBehaviour
     public GameObject pauseMenu;
     public static bool isPaused;
 
+    //setting menu
+    public GameObject settingsMenu;
+
     void Start()
     {
         pauseMenu.SetActive(false);
+        settingsMenu.SetActive(false);
     }
 
     public void pauseGame()
@@ -45,9 +49,16 @@ public class functions : MonoBehaviour
         isPaused = false;
     }
 
-    public void changeAudioVolume()
+    public void goToSettings()
     {
+        pauseMenu.SetActive(false);
+        settingsMenu.SetActive(true);
+    }
 
+    public void returnToPauseMenu()
+    {
+        settingsMenu.SetActive(false);
+        pauseMenu.SetActive(true);
     }
 
     public void quitGame()
