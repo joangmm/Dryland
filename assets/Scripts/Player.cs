@@ -5,7 +5,7 @@ using System.Collections.Generic;
 //using System.Threading;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class Player : MonoBehaviour
 {
     private Vector3 up = Vector3.zero;
     private Vector3 right = new Vector3(0, 90, 0);
@@ -21,6 +21,10 @@ public class Movement : MonoBehaviour
 
     private bool canMove;
     private bool isAlive = true;
+    //health --> they are used in the script fillStatusBar
+    public float current_health = 10;
+    public float max_health = 10;
+
     void Start()
     {
         animator = GetComponent<Animator>();
