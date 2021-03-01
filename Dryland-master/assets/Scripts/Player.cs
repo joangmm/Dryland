@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     private float rayLength = 1f;
 
     private bool canMove;
-    private bool isAlive = true;
+    public bool isAlive = true;
     //health --> they are used in the script fillStatusBar
     public float current_health = 10;
     public float max_health = 10;

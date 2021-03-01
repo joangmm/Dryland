@@ -1,9 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class functions : MonoBehaviour
 {
+    public GameObject pauseMenu;
+    public static bool isPaused;
+
+    public Player player;
+
+    //setting menu
+    public GameObject settingsMenu;
+
+    //controllers menu
+    public GameObject controllersMenu;
+
+    //gameover menu
+    public GameObject gameOverMenu;
+
+    void Start()
+    {
+        pauseMenu.SetActive(false);
+        settingsMenu.SetActive(false);
+        controllersMenu.SetActive(false);
+        gameOverMenu.SetActive(false);
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -13,26 +36,20 @@ public class functions : MonoBehaviour
 
         else if (Input.GetKeyDown(KeyCode.P))
         {
-            if(isPaused)
+            if (isPaused)
             {
                 resumeGame();
-            } else
+            }
+            else
             {
                 pauseGame();
             }
         }
-    }
 
-    public GameObject pauseMenu;
-    public static bool isPaused;
-
-    //setting menu
-    public GameObject settingsMenu;
-
-    void Start()
-    {
-        pauseMenu.SetActive(false);
-        settingsMenu.SetActive(false);
+        if ( player.isAlive == false )
+        {
+            gameOver();
+        }
     }
 
     public void pauseGame()
@@ -55,8 +72,15 @@ public class functions : MonoBehaviour
         settingsMenu.SetActive(true);
     }
 
+    public void goToControllers()
+    {
+        pauseMenu.SetActive(false);
+        controllersMenu.SetActive(true);
+    }
+
     public void returnToPauseMenu()
     {
+        controllersMenu.SetActive(false);
         settingsMenu.SetActive(false);
         pauseMenu.SetActive(true);
     }
@@ -75,5 +99,10 @@ public class functions : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    public void gameOver()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 }

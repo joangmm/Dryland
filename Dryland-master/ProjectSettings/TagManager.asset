@@ -8,6 +8,8 @@ TagManager:
   - Ground
   - Lion
   - Cocodrile
+  - MenuMusic
+  - gameOverMusic
   layers:
   - Default
   - TransparentFX

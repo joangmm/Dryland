@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class GameOver : MonoBehaviour
 {
-    public AudioSource Bgaudio;
+    public void tryAgain()
+    {
+        SceneManager.LoadScene("Level_1");
+    }
 
-    public void playGame()
+    public void levelSelection()
     {
         SceneManager.LoadScene("LevelSelection");
-        //SceneManager.LoadScene( 1 );  //by passing the id
-        //SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex + 1);    //next scene specified in the order
     }
 
     public void quitGame()
