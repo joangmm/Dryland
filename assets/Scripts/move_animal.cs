@@ -14,6 +14,7 @@ public class move_animal : MonoBehaviour
     private Vector3 aux;
     private bool obsInFront = false;
     private Camera raycast;
+    private RaycastHit hit;
 
     private Animation anim;
 
@@ -21,62 +22,34 @@ public class move_animal : MonoBehaviour
 
     void Start()
     {
-        raycast = GetComponent<Camera>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
-
-        if (Physics.Raycast(transform.position, fwd, 2) && obsInFront == false)
-        {
-            obsInFront = true;
-            Vector3 rot = transform.rotation.eulerAngles;
-            rot = new Vector3(rot.x, rot.y + 180, rot.z);
-            transform.rotation = Quaternion.Euler(rot);
-            backwards ^= true;
-            //raycast.transform.rotation = Quaternion.Euler(rot);
-        }
-        else
-        {
-            obsInFront = false;
-        }
-
+        
+        
         if (Time.time > nextActionTime)
         {
             nextActionTime += period;
-            if (obsInFront == false)
+            if (Physics.Raycast(transform.position, Vector3.forward, 2))
             {
-                isMoving = true;
-                transform.position += Vector3.forward * speed + jump;
-                aux = new Vector3(Mathf.Floor(transform.position.x), Mathf.Floor(transform.position.y), Mathf.Floor(transform.position.z));
-                transform.position = aux;
+                Debug.Log("LIMITEEE" + Vector3.forward.ToString());
+                Vector3 rot = transform.rotation.eulerAngles;
+                rot = new Vector3(rot.x, rot.y + 180, rot.z);
+                transform.rotation = Quaternion.Euler(rot);
+                
+
             }
-            else
-            {
-                isMoving = true;
-                transform.position -= Vector3.forward * speed - jump;
-                aux = new Vector3(Mathf.Floor(transform.position.x), Mathf.Floor(transform.position.y), Mathf.Floor(transform.position.z));
-                transform.position = aux;
-            }
+            
+            isMoving = true;
+            transform.position += Vector3.forward * speed + jump;
+            aux = new Vector3(Mathf.Floor(transform.position.x), Mathf.Floor(transform.position.y), Mathf.Floor(transform.position.z));
+            transform.position = aux;
+            
 
         }
 
     }
-
-    void OnCollisionEnter(Collision collision)
-    {
-
-        //Check for a match with the specific tag on any GameObject that collides with your GameObject
-        if (collision.gameObject.tag == "Limit")
-        {
-            Vector3 rot = transform.rotation.eulerAngles;
-            rot = new Vector3(rot.x, rot.y + 180, rot.z);
-            transform.rotation = Quaternion.Euler(rot);
-            backwards ^= true;
-        }
-    }
-
-
 }
