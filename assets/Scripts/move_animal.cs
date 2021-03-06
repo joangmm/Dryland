@@ -29,11 +29,11 @@ public class move_animal : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.Raycast( origin, direction, out hit, maxDistance ) && hit.transform.tag == "Limit")
+        if (Physics.Raycast( origin, direction, out hit, maxDistance ) && (hit.transform.tag == "limit" || hit.transform.tag == "cactus"))
         {
             Debug.DrawRay( origin, direction * hit.distance, Color.yellow);
             transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
-
+            Debug.Log(transform.tag);
             //change speed to go backwards
             speed = speed * ( -1 ) ;
         }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 //using System.Security.Cryptography;
 //using System.Threading;
 using UnityEngine;
-
+using System;
 public class Player : MonoBehaviour
 {
     private Vector3 up = Vector3.zero;
@@ -97,17 +97,16 @@ public class Player : MonoBehaviour
     {
         Ray myRay = new Ray(transform.position + new Vector3(0, 0.25f, 0), transform.forward);
         RaycastHit hit;
-
         Debug.DrawRay(myRay.origin, myRay.direction, Color.red);
-
-        if(Physics.Raycast(myRay, out hit, rayLength))
+ 
+        if (Physics.Raycast(myRay, out hit, rayLength))
         {
-            if(hit.collider.tag == "Limit")
+            if (hit.collider.tag == "limit" || hit.collider.tag == "cactus")
             {
                 animator.SetTrigger("isIdle");
+                canMove = false;
                 return false;
             }
-            
         }
         animator.SetTrigger("isRunning");
         return true;
@@ -116,7 +115,7 @@ public class Player : MonoBehaviour
     {
 
         //Check for a match with the specific tag on any GameObject that collides with your GameObject
-        if (collision.gameObject.tag == "Lion" || collision.gameObject.tag == "Cocodrile")
+        if (collision.gameObject.tag == "lion" || collision.gameObject.tag == "cocodrile")
         {
             animator.SetBool("dead", true);
             isAlive = false;

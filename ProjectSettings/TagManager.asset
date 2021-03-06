@@ -4,12 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Limit
-  - Ground
-  - Lion
-  - Cocodrile
   - MenuMusic
   - gameOverMusic
+  - snake
+  - lion
+  - cocodrile
+  - limit
+  - ground
+  - cactus
+  - Ground
   layers:
   - Default
   - TransparentFX
