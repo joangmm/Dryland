@@ -18,6 +18,7 @@ public class move_animal : MonoBehaviour
     {
         raycast = GetComponent<Camera>();
         initial = transform.position;
+        anim = gameObject.GetComponent<Animation>();
     }
 
     // Update is called once per frame
@@ -33,13 +34,13 @@ public class move_animal : MonoBehaviour
         {
             Debug.DrawRay( origin, direction * hit.distance, Color.yellow);
             transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
-            Debug.Log(transform.tag);
+            //Debug.Log(transform.tag);
             //change speed to go backwards
             speed = speed * ( -1 ) ;
         }
         else
         {
-            Debug.DrawRay(origin, direction * 100, Color.white);
+            //Debug.DrawRay(origin, direction * 100, Color.white);
             //Debug.Log("Did Hit");
         }
 
@@ -49,7 +50,7 @@ public class move_animal : MonoBehaviour
             Vector3 target = transform.position;
 
             target += (Vector3.forward * speed + jump);
-
+            anim.Play("move");
             transform.position = new Vector3(Mathf.Floor(initial.x), Mathf.Floor(target.y), target.z );
         }
 
