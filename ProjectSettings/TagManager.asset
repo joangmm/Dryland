@@ -13,6 +13,9 @@ TagManager:
   - ground
   - cactus
   - Ground
+  - Lion
+  - enemigo
+  - player
   layers:
   - Default
   - TransparentFX

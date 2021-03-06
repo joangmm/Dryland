@@ -54,18 +54,4 @@ public class move_animal : MonoBehaviour
         }
 
     }
-
-    void OnCollisionEnter(Collision collision)
-    {
-
-        //Check for a match with the specific tag on any GameObject that collides with your GameObject
-        /*
-        if (collision.gameObject.tag == "Limit")
-        {
-            Vector3 rot = transform.rotation.eulerAngles;
-            rot = new Vector3(rot.x, rot.y + 180, rot.z);
-            transform.rotation = Quaternion.Euler(rot);
-            backwards ^= true;
-        }*/
-    }
 }
