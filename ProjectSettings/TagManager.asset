@@ -16,6 +16,7 @@ TagManager:
   - Lion
   - enemigo
   - player
+  - waterwell
   layers:
   - Default
   - TransparentFX

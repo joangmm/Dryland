@@ -26,7 +26,7 @@ public class move_animal : MonoBehaviour
     {
         Vector3 origin = transform.position;
         Vector3 direction = transform.TransformDirection(Vector3.forward);
-        float maxDistance = 2;
+        float maxDistance = 1;
 
         RaycastHit hit;
 
@@ -51,7 +51,7 @@ public class move_animal : MonoBehaviour
 
             target += (Vector3.forward * speed + jump);
             anim.Play("move");
-            transform.position = new Vector3(Mathf.Floor(initial.x), Mathf.Floor(target.y), target.z );
+            transform.position = new Vector3(initial.x, target.y, target.z );
         }
 
     }
