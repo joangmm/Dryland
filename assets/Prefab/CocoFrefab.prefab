@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4068479976906209818}
   - component: {fileID: -3267389805217327477}
   - component: {fileID: 1560566796369735302}
-  - component: {fileID: 865754890762616965}
+  - component: {fileID: 6758804903755129299}
   m_Layer: 0
   m_Name: CocoFrefab
   m_TagString: enemigo
@@ -51,7 +51,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 6
   m_CollisionDetection: 0
 --- !u!65 &-884838422108879609
 BoxCollider:
@@ -73,7 +73,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1751005366872531552}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1751005366872531552}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
   m_Name: 
@@ -140,25 +140,22 @@ MonoBehaviour:
   speed: 2
   period: 0.7
   jump: {x: 0, y: 0, z: 0}
---- !u!95 &865754890762616965
-Animator:
-  serializedVersion: 3
+--- !u!111 &6758804903755129299
+Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1751005366872531552}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 823e03c0aff73284d9e6c9e32492ccf3, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 823e03c0aff73284d9e6c9e32492ccf3, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &7171825199887625193
 PrefabInstance:
   m_ObjectHideFlags: 0

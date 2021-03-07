@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     private Vector3 left = new Vector3(0, 270, 0);
     private Vector3 currentDirection = Vector3.zero;
     private Animator animator;
-    
+
     private Vector3 nextPos, destination, direction;
 
     private float speed = 3f;
@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
        Move();
         if (transform.position == destination)
         {
-            animator.SetTrigger("isIdle");
+            animator.Play("idle");
         }
     }
 
@@ -53,12 +53,14 @@ public class Player : MonoBehaviour
             {
                 nextPos = Vector3.left;
                 currentDirection = left;
+                animator.Play("move");
                 canMove = true;
             }
             if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
                 nextPos = Vector3.right;
                 currentDirection = right;
+                animator.Play("move");
                 canMove = true;
 
             }
@@ -66,12 +68,14 @@ public class Player : MonoBehaviour
             {
                 nextPos = Vector3.forward;
                 currentDirection = up;
+                animator.Play("move");
                 canMove = true;
             }
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 nextPos = Vector3.back;
                 currentDirection = down;
+                animator.Play("move");
                 canMove = true;
             }
 
@@ -103,12 +107,12 @@ public class Player : MonoBehaviour
         {
             if (hit.collider.tag == "limit" || hit.collider.tag == "cactus")
             {
-                animator.SetTrigger("isIdle");
+                animator.Play("idle");
                 canMove = false;
                 return false;
             }
         }
-        animator.SetTrigger("isRunning");
+        //animator.SetTrigger("move");
         return true;
     }
     void OnCollisionEnter(Collision collision)
@@ -117,7 +121,7 @@ public class Player : MonoBehaviour
         //Check for a match with the specific tag on any GameObject that collides with your GameObject
         if (collision.gameObject.tag == "lion" || collision.gameObject.tag == "cocodrile")
         {
-            animator.SetBool("dead", true);
+            //animator.SetBool("dead", true);
             isAlive = false;
         }
     }
