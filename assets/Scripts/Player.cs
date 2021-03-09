@@ -20,13 +20,20 @@ public class Player : MonoBehaviour
     private float rayLength = 1f;
 
     private bool canMove;
-    public bool isAlive = true;
+    public bool isAlive;
+
+    public float periot = 0.5f;
+    private float interval = 0.0f;
+
+
+    
     //health --> they are used in the script fillStatusBar
     public float current_health = 10;
     public float max_health = 10;
 
     void Start()
     {
+        isAlive = true;
         animator = GetComponent<Animator>();
         currentDirection = up;
         nextPos = Vector3.forward;
@@ -37,7 +44,7 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-       Move();
+        Move();
         if (transform.position == destination)
         {
             animator.Play("idle");
@@ -47,32 +54,38 @@ public class Player : MonoBehaviour
     void Move()
     {
         transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
-        if (isAlive)
+          
+        if (isAlive )
         {
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+            
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) && Time.time > interval)
             {
+                interval = periot + Time.time;
                 nextPos = Vector3.left;
                 currentDirection = left;
                 animator.Play("move");
                 canMove = true;
             }
-            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) && Time.time > interval)
             {
+                interval = periot + Time.time;
                 nextPos = Vector3.right;
                 currentDirection = right;
                 animator.Play("move");
                 canMove = true;
 
             }
-            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow) && Time.time > interval)
             {
+                interval = periot + Time.time;
                 nextPos = Vector3.forward;
                 currentDirection = up;
                 animator.Play("move");
                 canMove = true;
             }
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow) && Time.time > interval)
             {
+                interval = periot + Time.time;
                 nextPos = Vector3.back;
                 currentDirection = down;
                 animator.Play("move");
@@ -94,6 +107,8 @@ public class Player : MonoBehaviour
                 }
 
             }
+
+            
         }
     }
 
@@ -115,14 +130,18 @@ public class Player : MonoBehaviour
         //animator.SetTrigger("move");
         return true;
     }
+    
     void OnCollisionEnter(Collision collision)
     {
 
         //Check for a match with the specific tag on any GameObject that collides with your GameObject
-        if (collision.gameObject.tag == "lion" || collision.gameObject.tag == "cocodrile")
+        if (collision.gameObject.tag == "enemigo")
         {
             //animator.SetBool("dead", true);
             isAlive = false;
         }
     }
+
+
+    
 }
