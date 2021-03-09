@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 //using System.Collections.Specialized;
 //using System.Security.Cryptography;
 //using System.Threading;
@@ -25,8 +26,9 @@ public class Player : MonoBehaviour
     public float periot = 0.5f;
     private float interval = 0.0f;
 
+    private GameObject gameOverMenu;
 
-    
+
     //health --> they are used in the script fillStatusBar
     public float current_health = 10;
     public float max_health = 10;
@@ -43,19 +45,12 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-        
-        
-        if (transform.position == destination)
-        {
-            animator.Play("idle");
-        }
         Move();
     }
 
     void Move()
     {
         transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
-          
         if (isAlive )
         {
             
@@ -109,7 +104,11 @@ public class Player : MonoBehaviour
 
             }
 
-            
+
+        }
+        else
+        {
+            gameOver();
         }
     }
 
@@ -123,7 +122,6 @@ public class Player : MonoBehaviour
         {
             if (hit.collider.tag == "limit" || hit.collider.tag == "cactus")
             {
-                animator.Play("idle");
                 canMove = false;
                 return false;
             }
@@ -134,15 +132,19 @@ public class Player : MonoBehaviour
     
     void OnCollisionEnter(Collision collision)
     {
-
+        Debug.Log("HIT");
         //Check for a match with the specific tag on any GameObject that collides with your GameObject
-        if (collision.gameObject.tag == "enemigo")
+        if (collision.gameObject.tag == "snake" || collision.gameObject.tag == "lion" || collision.gameObject.tag == "cocodrile")
         {
+            
             //animator.SetBool("dead", true);
             isAlive = false;
         }
     }
 
+    public void gameOver()
+    {
+        SceneManager.LoadScene("GameOver");
+    }
 
-    
 }

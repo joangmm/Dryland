@@ -9,6 +9,7 @@ public class functions : MonoBehaviour
     public static bool isPaused;
 
     public Player player;
+    
 
     //setting menu
     public GameObject settingsMenu;
@@ -29,6 +30,7 @@ public class functions : MonoBehaviour
 
     void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             quit();
@@ -45,11 +47,11 @@ public class functions : MonoBehaviour
                 pauseGame();
             }
         }
-
-        if ( player.isAlive == false )
+        /*
+        if ( isAlive )
         {
             gameOver();
-        }
+        }*/
     }
 
     public void pauseGame()
