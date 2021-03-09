@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
         if (isAlive )
         {
             
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) && Time.time > interval)
+            if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && Time.time > interval)
             {
                 interval = periot + Time.time;
                 nextPos = Vector3.left;
@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
                 animator.Play("move");
                 canMove = true;
             }
-            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) && Time.time > interval)
+            if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && Time.time > interval)
             {
                 interval = periot + Time.time;
                 nextPos = Vector3.right;
@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
                 canMove = true;
 
             }
-            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow) && Time.time > interval)
+            if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && Time.time > interval)
             {
                 interval = periot + Time.time;
                 nextPos = Vector3.forward;
@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
                 animator.Play("move");
                 canMove = true;
             }
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow) && Time.time > interval)
+            if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && Time.time > interval)
             {
                 interval = periot + Time.time;
                 nextPos = Vector3.back;
