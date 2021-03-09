@@ -43,12 +43,13 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-
-        Move();
+        
+        
         if (transform.position == destination)
         {
             animator.Play("idle");
         }
+        Move();
     }
 
     void Move()

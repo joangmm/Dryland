@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAlive: 1
+  period: 1e-14
   current_health: 10
   max_health: 10
 --- !u!1001 &9185708327164806623
