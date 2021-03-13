@@ -107,4 +107,9 @@ public class functions : MonoBehaviour
     {
         SceneManager.LoadScene("GameOver");
     }
+
+    public void gameWin()
+    {
+        SceneManager.LoadScene("GameWinL1");
+    }
 }
