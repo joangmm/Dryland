@@ -125,6 +125,15 @@ public class Player : MonoBehaviour
                 canMove = false;
                 return false;
             }
+
+            else if (hit.collider.tag == "fridge")
+            {
+                Debug.Log("hit");
+                hit.collider.transform.localPosition = new Vector3(-0.23f, 0f, 1.04f);
+                hit.collider.transform.rotation = new Quaternion(0f, 90f, 0f, 0f);
+                canMove = false;
+                return false;
+            }
         }
         //animator.SetTrigger("move");
         return true;
@@ -132,14 +141,13 @@ public class Player : MonoBehaviour
     
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("HIT");
         //Check for a match with the specific tag on any GameObject that collides with your GameObject
         if (collision.gameObject.tag == "snake" || collision.gameObject.tag == "lion" || collision.gameObject.tag == "cocodrile")
         {
-            
             //animator.SetBool("dead", true);
             isAlive = false;
         }
+
     }
 
     public void gameOver()

@@ -17,6 +17,7 @@ TagManager:
   - enemigo
   - player
   - waterwell
+  - fridge
   layers:
   - Default
   - TransparentFX
