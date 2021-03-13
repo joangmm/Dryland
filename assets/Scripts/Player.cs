@@ -21,13 +21,13 @@ public class Player : MonoBehaviour
     private float rayLength = 1f;
 
     private bool canMove;
-    public bool isAlive;
-
-    public float periot = 0.5f;
+    private bool isAlive = true;
+    private bool isBited = false;
+    private int bitedTimes = 0;
+    public float period = 0.5f;
     private float interval = 0.0f;
-
+    private float poisonTick=0.0f;
     private GameObject gameOverMenu;
-
 
     //health --> they are used in the script fillStatusBar
     public float current_health = 10;
@@ -35,7 +35,6 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        isAlive = true;
         animator = GetComponent<Animator>();
         currentDirection = up;
         nextPos = Vector3.forward;
@@ -45,6 +44,10 @@ public class Player : MonoBehaviour
     
     void Update()
     {
+        if (isBited)
+        {
+            poisonTick = poisoned(poisonTick, bitedTimes);
+        }
         Move();
     }
 
@@ -56,7 +59,7 @@ public class Player : MonoBehaviour
             
             if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && Time.time > interval)
             {
-                interval = periot + Time.time;
+                interval = period + Time.time;
                 nextPos = Vector3.left;
                 currentDirection = left;
                 animator.Play("move");
@@ -64,7 +67,7 @@ public class Player : MonoBehaviour
             }
             if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && Time.time > interval)
             {
-                interval = periot + Time.time;
+                interval = period + Time.time;
                 nextPos = Vector3.right;
                 currentDirection = right;
                 animator.Play("move");
@@ -73,7 +76,7 @@ public class Player : MonoBehaviour
             }
             if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && Time.time > interval)
             {
-                interval = periot + Time.time;
+                interval = period + Time.time;
                 nextPos = Vector3.forward;
                 currentDirection = up;
                 animator.Play("move");
@@ -81,7 +84,7 @@ public class Player : MonoBehaviour
             }
             if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && Time.time > interval)
             {
-                interval = periot + Time.time;
+                interval = period + Time.time;
                 nextPos = Vector3.back;
                 currentDirection = down;
                 animator.Play("move");
@@ -142,6 +145,15 @@ public class Player : MonoBehaviour
                 canMove = false;
                 return false;
             }
+            else if(hit.collider.tag == "Finish")
+            {
+                if(isBited)
+                    SceneManager.LoadScene("GameWinL1Poisoned");
+                else
+                {
+                    sceneManager.LoadScene("GameWinL1")
+                }
+            }
         }
         //animator.SetTrigger("move");
         return true;
@@ -150,14 +162,37 @@ public class Player : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         //Check for a match with the specific tag on any GameObject that collides with your GameObject
-        if (collision.gameObject.tag == "snake" || collision.gameObject.tag == "lion" || collision.gameObject.tag == "cocodrile")
+        if (collision.gameObject.tag == "lion" || collision.gameObject.tag == "cocodrile")
         {
             //animator.SetBool("dead", true);
+            current_health = 0;
             isAlive = false;
+        }
+        else if(collision.gameObject.tag == "snake")
+        {
+            if (isBited == false)
+                poisonTick = Time.time;
+            isBited = true;
+            bitedTimes += 1;
         }
 
     }
 
+    public float poisoned(float curr_time, int times)
+    {
+        if(Time.time > curr_time)
+        {
+            current_health -=(0.1f)*times;
+            if (current_health < 0)
+                current_health = 0;
+            if(current_health == 0)
+            {
+                isAlive = false;
+            }
+            return curr_time + 1;
+        }
+        return curr_time;
+    }
     public void gameOver()
     {
         SceneManager.LoadScene("GameOver");
