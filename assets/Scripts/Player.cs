@@ -120,15 +120,23 @@ public class Player : MonoBehaviour
  
         if (Physics.Raycast(myRay, out hit, rayLength))
         {
-            if (hit.collider.tag == "limit" || hit.collider.tag == "cactus")
+            if (hit.collider.tag == "limit")
             {
                 canMove = false;
                 return false;
             }
-
+            else if(hit.collider.tag == "cactus")
+            {
+                current_health -= 2;
+                canMove = false;
+                if(current_health == 0)
+                {
+                    isAlive = false;
+                }
+                return false;
+            }
             else if (hit.collider.tag == "fridge")
             {
-                Debug.Log("hit");
                 hit.collider.transform.localPosition = new Vector3(-0.23f, 0f, 1.04f);
                 hit.collider.transform.rotation = new Quaternion(0f, 90f, 0f, 0f);
                 canMove = false;
