@@ -140,8 +140,14 @@ public class Player : MonoBehaviour
             }
             else if (hit.collider.tag == "fridge")
             {
-                hit.collider.transform.localPosition = new Vector3(-0.23f, 0f, 1.04f);
-                hit.collider.transform.rotation = new Quaternion(0f, 90f, 0f, 0f);
+                AudioSource audio = hit.collider.GetComponent<AudioSource>();
+                audio.Play();
+                hit.collider.transform.localPosition = new Vector3(0.1f, 0f, 0.91f);
+                Vector3 v = transform.localEulerAngles;
+                v.y = 270f;
+                hit.collider.transform.localEulerAngles = v;
+                AudioSource drinking = GetComponent<AudioSource>();
+                StartCoroutine(waiter(drinking));
                 canMove = false;
                 return false;
             }
@@ -151,7 +157,7 @@ public class Player : MonoBehaviour
                     SceneManager.LoadScene("GameWinL1Poisoned");
                 else
                 {
-                    sceneManager.LoadScene("GameWinL1")
+                    SceneManager.LoadScene("GameWinL1");
                 }
             }
         }
@@ -177,7 +183,13 @@ public class Player : MonoBehaviour
         }
 
     }
-
+    IEnumerator waiter(AudioSource audio)
+    {
+        yield return new WaitForSeconds(1);
+        audio.Play();
+        yield return new WaitForSeconds(3);
+        audio.Stop();
+    }
     public float poisoned(float curr_time, int times)
     {
         if(Time.time > curr_time)

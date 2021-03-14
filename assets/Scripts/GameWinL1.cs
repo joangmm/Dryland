@@ -7,7 +7,7 @@ public class GameWinL1 : MonoBehaviour
 {
     public void nextLevel()
     {
-        SceneManager.LoadScene("Level_2");
+        SceneManager.LoadScene("TransitionCanvas");
     }
 
     public void quitGame()
