@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.38909787, g: 0.6014908, b: 0.8402809, a: 1}
+  m_IndirectSpecularColor: {r: 0.34844124, g: 0.5842143, b: 0.8840735, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -675,6 +675,8 @@ MonoBehaviour:
   period: 0.2
   current_health: 10
   max_health: 10
+  girlAnimated: {fileID: 0}
+  girlTpose: {fileID: 0}
 --- !u!95 &603477677
 Animator:
   serializedVersion: 3
@@ -1885,7 +1887,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0

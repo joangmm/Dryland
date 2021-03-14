@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public class manageAudio : MonoBehaviour
 {
-    public AudioSource BGaudio;
+    private AudioSource BGaudio;
     private Slider slider;
 
     void Awake()
     {
+        BGaudio = GameObject.FindGameObjectWithTag("MenuMusic").GetComponent<AudioSource>();
+
         slider = GetComponent<Slider>();
         slider.value = BGaudio.volume;
     }

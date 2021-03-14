@@ -28,10 +28,16 @@ public class Player : MonoBehaviour
     private float interval = 0.0f;
     private float poisonTick=0.0f;
     private GameObject gameOverMenu;
+    private bool tpose = false;
+    private int tpose_counter = 0;
+    private bool godMode = false;
 
     //health --> they are used in the script fillStatusBar
     public float current_health = 10;
     public float max_health = 10;
+
+    public GameObject girlAnimated;
+    public GameObject girlTpose;
 
     void Start()
     {
@@ -39,6 +45,9 @@ public class Player : MonoBehaviour
         currentDirection = up;
         nextPos = Vector3.forward;
         destination = transform.position;
+        girlTpose.SetActive(false);
+        tpose = false;
+        tpose_counter = 0;
     }
 
     
@@ -49,12 +58,26 @@ public class Player : MonoBehaviour
             poisonTick = poisoned(poisonTick, bitedTimes);
         }
         Move();
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            tpose_counter++;
+            if (tpose_counter >= 5)
+            {
+                applyTpose();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            godMode = true;
+        }
     }
 
     void Move()
     {
         transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
-        if (isAlive )
+        if (isAlive || godMode )
         {
             
             if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && Time.time > interval)
@@ -218,9 +241,29 @@ public class Player : MonoBehaviour
         }
         return curr_time;
     }
+
     public void gameOver()
     {
         SceneManager.LoadScene("GameOver");
     }
 
+    void applyTpose()
+    {
+        tpose = !tpose;
+
+        //animator.enabled = tpose;
+
+        if (tpose)
+        {
+            girlAnimated.SetActive(false);
+            girlTpose.SetActive(true);
+            tpose_counter = 0;
+        } else
+        {
+            girlTpose.SetActive(false);
+            girlAnimated.SetActive(true);
+            tpose_counter = 0;
+        }
+        
+    }
 }
