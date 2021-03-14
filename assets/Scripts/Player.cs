@@ -189,6 +189,19 @@ public class Player : MonoBehaviour
         audio.Play();
         yield return new WaitForSeconds(3);
         audio.Stop();
+        GameObject image = GameObject.Find("Canvas/Image");
+        GameObject text = GameObject.Find("Canvas/Text");
+        GameObject fade_in = GameObject.FindGameObjectsWithTag("MenuMusic")[0];
+        Animator image_animator = image.GetComponent<Animator>();
+        Animator text_animator = text.GetComponent<Animator>();
+        Animator fade_in_animator = fade_in.GetComponent<Animator>();
+        image_animator.SetTrigger("isEndgame");
+        text_animator.SetTrigger("isEndgame");
+        fade_in_animator.SetTrigger("isEndGame");
+        yield return new WaitForSeconds(5);
+        Destroy(fade_in);
+        SceneManager.LoadScene("MainMenu");
+
     }
     public float poisoned(float curr_time, int times)
     {

@@ -18,6 +18,7 @@ TagManager:
   - player
   - waterwell
   - fridge
+  - endGame
   layers:
   - Default
   - TransparentFX
