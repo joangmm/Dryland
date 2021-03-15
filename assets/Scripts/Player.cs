@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
     private bool tpose = false;
     private int tpose_counter = 0;
     private bool godMode = false;
+    private AudioSource ouch;
+    private BoxCollider collider;
 
     //health --> they are used in the script fillStatusBar
     public float current_health = 10;
@@ -48,6 +50,8 @@ public class Player : MonoBehaviour
         girlTpose.SetActive(false);
         tpose = false;
         tpose_counter = 0;
+        ouch = GetComponent<AudioSource>();
+        collider = GetComponent<BoxCollider>();
     }
 
     
@@ -71,6 +75,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
         {
             godMode = true;
+            collider.enabled = false;
         }
     }
 
@@ -159,6 +164,8 @@ public class Player : MonoBehaviour
                 {
                     isAlive = false;
                 }
+                else
+                    playOuch();
                 return false;
             }
             else if (hit.collider.tag == "fridge")
@@ -202,6 +209,7 @@ public class Player : MonoBehaviour
             if (isBited == false)
                 poisonTick = Time.time;
             isBited = true;
+            playOuch();
             bitedTimes += 1;
         }
 
@@ -220,8 +228,9 @@ public class Player : MonoBehaviour
         Animator fade_in_animator = fade_in.GetComponent<Animator>();
         image_animator.SetTrigger("isEndgame");
         text_animator.SetTrigger("isEndgame");
+        yield return new WaitForSeconds(2);
         fade_in_animator.SetTrigger("isEndGame");
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         Destroy(fade_in);
         SceneManager.LoadScene("MainMenu");
 
@@ -246,7 +255,13 @@ public class Player : MonoBehaviour
     {
         SceneManager.LoadScene("GameOver");
     }
-
+    void playOuch()
+    {
+        if (ouch != null)
+        {
+            ouch.Play();
+        }
+    }
     void applyTpose()
     {
         tpose = !tpose;

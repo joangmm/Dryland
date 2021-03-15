@@ -11,7 +11,6 @@ public class move_animal : MonoBehaviour
     public Vector3 jump = new Vector3(0, 0, 0);
     private Camera raycast;
     private Vector3 initial;
-
     private Animation anim;
 
     void Start()
@@ -24,6 +23,7 @@ public class move_animal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         Vector3 origin = transform.position;
         Vector3 direction = transform.TransformDirection(Vector3.forward);
         float maxDistance = 1;
@@ -44,7 +44,7 @@ public class move_animal : MonoBehaviour
             //Debug.Log("Did Hit");
         }
 
-        if (Time.time > nextActionTime)
+        if (Time.timeSinceLevelLoad > nextActionTime)
         {
             nextActionTime += period;
             Vector3 target = transform.position;
