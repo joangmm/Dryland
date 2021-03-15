@@ -8,7 +8,6 @@ public class TransitionCanvas : MonoBehaviour
     public void nextLevel()
     {
         SceneManager.LoadScene("Level_2");
-        SceneManager.UnloadScene("Transition Canvas");
     }
 
     public void quitGame()

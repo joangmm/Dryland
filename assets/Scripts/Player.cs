@@ -74,8 +74,8 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.G))
         {
-            godMode = true;
-            collider.enabled = false;
+            godMode ^= true;
+            collider.enabled ^= true;
         }
     }
 
@@ -222,16 +222,23 @@ public class Player : MonoBehaviour
         audio.Stop();
         GameObject image = GameObject.Find("Canvas/Image");
         GameObject text = GameObject.Find("Canvas/Text");
-        GameObject fade_in = GameObject.FindGameObjectsWithTag("MenuMusic")[0];
+        GameObject music = GameObject.FindGameObjectsWithTag("MenuMusic")[0];
         Animator image_animator = image.GetComponent<Animator>();
         Animator text_animator = text.GetComponent<Animator>();
-        Animator fade_in_animator = fade_in.GetComponent<Animator>();
+        AudioSource music_audiosource = music.GetComponent<AudioSource>();
         image_animator.SetTrigger("isEndgame");
         text_animator.SetTrigger("isEndgame");
         yield return new WaitForSeconds(2);
-        fade_in_animator.SetTrigger("isEndGame");
+        float startVolume = music_audiosource.volume;
+        while (music_audiosource.volume > 0)
+        {
+            music_audiosource.volume -= startVolume * Time.deltaTime / 2;
+
+            yield return null;
+        }
         yield return new WaitForSeconds(3);
-        Destroy(fade_in);
+
+        Destroy(music);
         SceneManager.LoadScene("MainMenu");
 
     }
