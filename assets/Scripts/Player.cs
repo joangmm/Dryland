@@ -75,6 +75,8 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
         {
             godMode ^= true;
+            isBited = false;
+            current_health = 10;
             collider.enabled ^= true;
         }
     }
@@ -158,14 +160,16 @@ public class Player : MonoBehaviour
             }
             else if(hit.collider.tag == "cactus")
             {
-                current_health -= 2;
                 canMove = false;
-                if(current_health == 0)
+                if (!godMode)
                 {
-                    isAlive = false;
-                }
-                else
+                    current_health -= 2;
                     playOuch();
+                    if (current_health == 0)
+                    {
+                        isAlive = false;
+                    }
+                }
                 return false;
             }
             else if (hit.collider.tag == "fridge")
@@ -204,7 +208,7 @@ public class Player : MonoBehaviour
             current_health = 0;
             isAlive = false;
         }
-        else if(collision.gameObject.tag == "snake")
+        else if(collision.gameObject.tag == "snake" && !godMode)
         {
             if (isBited == false)
                 poisonTick = Time.time;
