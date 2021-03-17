@@ -9963,12 +9963,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 512916650}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &514008895 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2387879603364250517, guid: 86847bd4ccbb2af4bb13992ecc44f2d9,
-    type: 3}
-  m_PrefabInstance: {fileID: 842480430}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &514226244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15468,6 +15462,8 @@ MonoBehaviour:
   text1: {fileID: 1361615493}
   text2: {fileID: 497810058}
   text3: {fileID: 882610873}
+  player: {fileID: 842480431}
+  display: 1
 --- !u!1 &799312036 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 73999ed7f5b3b4f4c912875785fc221d,
@@ -16380,14 +16376,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3290859008907823128, guid: 86847bd4ccbb2af4bb13992ecc44f2d9,
         type: 3}
-      propertyPath: girlTpose
-      value: 
-      objectReference: {fileID: 514008895}
+      propertyPath: canMove
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3290859008907823128, guid: 86847bd4ccbb2af4bb13992ecc44f2d9,
         type: 3}
-      propertyPath: girlAnimated
-      value: 
-      objectReference: {fileID: 1345391989}
+      propertyPath: isDialog
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3983715029721691585, guid: 86847bd4ccbb2af4bb13992ecc44f2d9,
         type: 3}
       propertyPath: m_CastShadows
@@ -26159,12 +26155,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4345878849055200, guid: fa6105287f77b1240a0017f7d23434c2,
     type: 3}
   m_PrefabInstance: {fileID: 1334735705}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1345391989 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8339356853549709454, guid: 86847bd4ccbb2af4bb13992ecc44f2d9,
-    type: 3}
-  m_PrefabInstance: {fileID: 842480430}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1348113376
 PrefabInstance:

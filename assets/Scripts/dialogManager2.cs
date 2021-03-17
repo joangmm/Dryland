@@ -10,9 +10,9 @@ public class dialogManager2 : MonoBehaviour
     public GameObject text1;
     public GameObject text2;
     public GameObject text3;
-
+    public GameObject player;
     private int counter;
-
+    private Player player_script;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +22,8 @@ public class dialogManager2 : MonoBehaviour
         text1.SetActive(true);
         text2.SetActive(false);
         text3.SetActive(false);
+        player_script = player.GetComponent<Player>();
+        player_script.isDialog = true;
         counter = 0;
 
     }
@@ -50,6 +52,7 @@ public class dialogManager2 : MonoBehaviour
                 text1.SetActive(false);
                 text2.SetActive(false);
                 text3.SetActive(false);
+                player_script.isDialog = false;
             }
         }
 

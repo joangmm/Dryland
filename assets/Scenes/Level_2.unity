@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.34842286, g: 0.58420086, b: 0.88407665, a: 1}
+  m_IndirectSpecularColor: {r: 0.36297253, g: 0.5661971, b: 0.84371066, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -318,6 +318,7 @@ MonoBehaviour:
   whiteBox: {fileID: 329273819}
   blackBox: {fileID: 1205443801}
   text1: {fileID: 505687299}
+  player: {fileID: 846423403}
 --- !u!1 &247002874
 GameObject:
   m_ObjectHideFlags: 0
@@ -1727,6 +1728,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c29657b5129f6e4b96625a5f2eb0b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMove: 1
+  isDialog: 1
   period: 0.2
   current_health: 10
   max_health: 10
@@ -3270,8 +3273,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 52, y: 0}
-  m_SizeDelta: {x: -512.179, y: -919.6805}
+  m_AnchoredPosition: {x: 52, y: 29.2896}
+  m_SizeDelta: {x: -512.179, y: -861.1014}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2130960964
 MonoBehaviour:
@@ -3306,7 +3309,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: VALORA EL AGUA Y HAZ UN CONSUMO RESPONSABLE
+  m_Text: VALORA EL AGUA Y HAZ UN CONSUMO RESPONSABLE. NO TODO EL MUNDO TIENE LA
+    MISMA FACILIDAD PARA CONSEGUIRLA.
 --- !u!222 &2130960965
 CanvasRenderer:
   m_ObjectHideFlags: 0

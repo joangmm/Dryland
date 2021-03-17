@@ -10,9 +10,11 @@ public class dialogManager : MonoBehaviour
     public GameObject text1;
     public GameObject text2;
     public GameObject text3;
-
+    private Player player_script;
     private int counter;
-
+    public GameObject player;
+    private bool allow_move;
+    public bool display = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,25 +25,26 @@ public class dialogManager : MonoBehaviour
         text2.SetActive(false);
         text3.SetActive(false);
         counter = 0;
-
+        player_script = player.GetComponent<Player>();
+        player_script.isDialog = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && display)
         {
             if (counter == 0)
             {
                 text1.SetActive(false);
                 text2.SetActive(true);
-                counter = 1;
+                counter += 1;
             }
             else if (counter == 1)
             {
                 text2.SetActive(false);
                 text3.SetActive(true);
-                counter = 2;
+                counter += 1;
             }else if(counter == 2)
             {
                 fatherImage.SetActive(false);
@@ -50,8 +53,11 @@ public class dialogManager : MonoBehaviour
                 text1.SetActive(false);
                 text2.SetActive(false);
                 text3.SetActive(false);
+                player_script.isDialog = false;
+                display = false;
+                counter++;
+                
             }
         }
-
     }
 }

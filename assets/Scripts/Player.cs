@@ -20,7 +20,8 @@ public class Player : MonoBehaviour
     private float speed = 3f;
     private float rayLength = 1f;
 
-    private bool canMove;
+    public bool canMove;
+    public bool isDialog;
     private bool isAlive = true;
     private bool isBited = false;
     private int bitedTimes = 0;
@@ -45,7 +46,7 @@ public class Player : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         currentDirection = up;
-        nextPos = Vector3.forward;
+        nextPos = new Vector3(0,0,0);
         destination = transform.position;
         girlTpose.SetActive(false);
         tpose = false;
@@ -86,57 +87,58 @@ public class Player : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
         if (isAlive || godMode )
         {
-            
-            if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && Time.time > interval)
+            if (!isDialog)
             {
-                interval = period + Time.time;
-                nextPos = Vector3.left;
-                currentDirection = left;
-                animator.Play("move");
-                canMove = true;
-            }
-            if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && Time.time > interval)
-            {
-                interval = period + Time.time;
-                nextPos = Vector3.right;
-                currentDirection = right;
-                animator.Play("move");
-                canMove = true;
-
-            }
-            if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && Time.time > interval)
-            {
-                interval = period + Time.time;
-                nextPos = Vector3.forward;
-                currentDirection = up;
-                animator.Play("move");
-                canMove = true;
-            }
-            if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && Time.time > interval)
-            {
-                interval = period + Time.time;
-                nextPos = Vector3.back;
-                currentDirection = down;
-                animator.Play("move");
-                canMove = true;
-            }
-
-            if (Vector3.Distance(destination, transform.position) <= 0.00001f)
-            {
-                transform.localEulerAngles = currentDirection;
-                if (canMove)
+                if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && Time.time > interval)
                 {
-                    if (Valid())
+                    interval = period + Time.time;
+                    nextPos = Vector3.left;
+                    currentDirection = left;
+                    animator.Play("move");
+                    canMove = true;
+                }
+                if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && Time.time > interval)
+                {
+                    interval = period + Time.time;
+                    nextPos = Vector3.right;
+                    currentDirection = right;
+                    animator.Play("move");
+                    canMove = true;
+
+                }
+                if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && Time.time > interval)
+                {
+                    interval = period + Time.time;
+                    nextPos = Vector3.forward;
+                    currentDirection = up;
+                    animator.Play("move");
+                    canMove = true;
+                }
+                if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && Time.time > interval)
+                {
+                    interval = period + Time.time;
+                    nextPos = Vector3.back;
+                    currentDirection = down;
+                    animator.Play("move");
+                    canMove = true;
+                }
+
+                if (Vector3.Distance(destination, transform.position) <= 0.00001f)
+                {
+                    transform.localEulerAngles = currentDirection;
+                    if (canMove || isDialog)
                     {
-                        destination = transform.position + nextPos;
-                        direction = nextPos;
-                        canMove = false;
+                        if (Valid())
+                        {
+                            destination = transform.position + nextPos;
+                            direction = nextPos;
+                            canMove = false;
+                        }
+
                     }
 
                 }
-
             }
-
 
         }
         else
@@ -183,6 +185,7 @@ public class Player : MonoBehaviour
                 AudioSource drinking = GetComponent<AudioSource>();
                 StartCoroutine(waiter(drinking));
                 canMove = false;
+                isDialog = true;
                 return false;
             }
             else if(hit.collider.tag == "Finish")
